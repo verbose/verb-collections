@@ -14,22 +14,17 @@ $ npm install verb-collections --save
 
 ```js
 var collections = require('verb-collections');
-```
 
-## API
-
-### [collections](index.js#L19)
-
-Register the plugin.
-
-**Example**
-
-```js
-var collections = require('generate-collections');
-
-// in your generator
+// register the plugin
 app.use(collections());
 ```
+
+## Related projects
+
+* [assemble](https://www.npmjs.com/package/assemble): Assemble is a powerful, extendable and easy to use static site generator for node.js. Used… [more](https://www.npmjs.com/package/assemble) | [homepage](https://github.com/assemble/assemble)
+* [generate](https://www.npmjs.com/package/generate): Fast, composable, highly extendable project generator with a user-friendly and expressive API. | [homepage](https://github.com/generate/generate)
+* [verb](https://www.npmjs.com/package/verb): Documentation generator for GitHub projects. Verb is extremely powerful, easy to use, and is used… [more](https://www.npmjs.com/package/verb) | [homepage](https://github.com/verbose/verb)
+* [verb-readme-generator](https://www.npmjs.com/package/verb-readme-generator): Generate your project's readme with verb. Requires verb v0.9.0 or higher. | [homepage](https://github.com/verbose/verb-readme-generator)
 
 ## Contributing
 

@@ -4,28 +4,13 @@ var falsey = require('falsey');
 var extend = require('extend-shallow');
 var isObject = require('isobject');
 
-/**
- * Register the plugin.
- *
- * ```js
- * var collections = require('generate-collections');
- *
- * // in your generator
- * app.use(collections());
- * ```
- * @api public
- */
-
 function collections(options) {
   return function plugin(app, base) {
     if (!isValidInstance(app)) return;
 
     var opts = extend({}, options, this.options);
 
-    /**
-     * Middleware for collections created by this generator
-     */
-
+    // Middleware for collections created by this generator
     this.preLayout(/\.md/, function(view, next) {
       if (falsey(view.layout) && !view.isType('partial')) {
         // use the empty layout created above, to ensure that all
