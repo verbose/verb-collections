@@ -1,7 +1,7 @@
 {
   "name": "verb-collections",
   "description": "Verb plugin that adds includes, layouts, badges and docs template collections. Can be used with verb, assemble or generate, in a `___file.js`, or a globally installed generator.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/jonschlinkert/verb-collections",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/verb-collections",
@@ -44,6 +44,14 @@
     "plugins": [
       "gulp-format-md"
     ],
+    "related": {
+      "list": [
+        "assemble",
+        "generate",
+        "verb",
+        "verb-readme-generator"
+      ]
+    },
     "reflinks": [
       "verb"
     ],
