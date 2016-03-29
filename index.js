@@ -4,13 +4,31 @@ var falsey = require('falsey');
 var extend = require('extend-shallow');
 var isObject = require('isobject');
 
+/**
+ * Register the plugin.
+ *
+ * ```js
+ * var collections = require('verb-collections');
+ *
+ * // in your generator
+ * this.use(collections());
+ * ```
+ * @api public
+ */
+
 function collections(options) {
+  options = options || {};
+
   return function plugin(app, base) {
     if (!isValidInstance(app)) return;
 
-    var opts = extend({}, options, this.options);
+    this.option(base.options);
+    this.option(options);
 
-    // Middleware for collections created by this generator
+    /**
+     * Middleware for collections created by this generator
+     */
+
     this.preLayout(/\.md/, function(view, next) {
       if (falsey(view.layout) && !view.isType('partial')) {
         // use the empty layout created above, to ensure that all
@@ -33,21 +51,25 @@ function collections(options) {
 
     // add default view collections
     this.create('files', { viewType: 'renderable'});
-    this.create('layouts', { viewType: 'layout' });
     this.create('includes', { viewType: 'partial' });
-    this.create('badges', { viewType: 'partial' });
-    this.create('docs', { viewType: 'partial' });
+    this.create('layouts', { viewType: 'layout' });
+
+    // verb-specific collections
+    if (this.isVerb) {
+      this.create('badges', { viewType: 'partial' });
+      this.create('docs', { viewType: 'partial' });
+    }
 
     // "noop" layout
     this.layout('empty', {content: '{% body %}'});
 
     // create collections defined on the options
-    if (isObject(opts.create)) {
-      for (var key in opts.create) {
+    if (isObject(this.options.create)) {
+      for (var key in this.options.create) {
         if (!this[key]) {
-          this.create(key, opts.create[key]);
+          this.create(key, this.options.create[key]);
         } else {
-          this[key].option(opts.create[key]);
+          this[key].option(this.options.create[key]);
         }
       }
     }
@@ -55,7 +77,7 @@ function collections(options) {
     // pass the plugin to sub-generators
     return plugin;
   };
-}
+};
 
 /**
  * Validate instance

@@ -19,6 +19,30 @@ var collections = require('verb-collections');
 app.use(collections());
 ```
 
+## Collections
+
+Adds the following view collections to your verb app:
+
+**Renderable**
+
+Templates in these collections can be (automatically) rendered:
+
+* `files`
+
+**Layouts**
+
+Templates in these collections can be used as layouts:
+
+* `layouts`
+
+**Partials**
+
+Templates in these collections can be used as partials:
+
+* `includes`
+* `badges`
+* `docs`
+
 ## Related projects
 
 You might also be interested in these projects:
