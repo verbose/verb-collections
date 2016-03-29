@@ -14,8 +14,10 @@ describe('verb-collections', function() {
   describe('plugin', function() {
     it('should only register the plugin once', function(cb) {
       var count = 0;
-      app.on('plugin', function() {
-        count++;
+      app.on('plugin', function(name) {
+        if (name === 'verb-collections') {
+          count++;
+        }
       });
       app.use(collections);
       app.use(collections);

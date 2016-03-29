@@ -20,9 +20,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "extend-shallow": "^2.0.1",
-    "falsey": "^0.3.0",
-    "isobject": "^2.0.0"
+    "generate-collections": "^0.2.0"
   },
   "devDependencies": {
     "engine-base": "^0.1.2",

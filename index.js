@@ -1,9 +1,5 @@
 'use strict';
 
-var falsey = require('falsey');
-var extend = require('extend-shallow');
-var isObject = require('isobject');
-
 /**
  * Register the plugin.
  *
@@ -11,7 +7,7 @@ var isObject = require('isobject');
  * var collections = require('verb-collections');
  *
  * // in your generator
- * this.use(collections());
+ * app.use(collections());
  * ```
  * @api public
  */
@@ -22,69 +18,23 @@ function collections(options) {
   return function plugin(app, base) {
     if (!isValidInstance(app)) return;
 
-    this.option(base.options);
-    this.option(options);
+    app.option(base.options);
+    app.option(options);
 
-    /**
-     * Middleware for collections created by this generator
-     */
+    app.create('badges', { viewType: 'partial' });
+    app.create('docs', { viewType: 'partial' });
 
-    this.preLayout(/\.md/, function(view, next) {
-      if (falsey(view.layout) && !view.isType('partial')) {
-        // use the empty layout created above, to ensure that all
-        // pre-and post-layout middleware are still triggered
-        view.layout = app.resolveLayout(view) || 'empty';
-        next();
-        return;
-      }
-
-      if (view.isType('partial')) {
-        view.options.layout = null;
-        view.data.layout = null;
-        view.layout = null;
-        if (typeof view.partialLayout === 'string') {
-          view.layout = view.partialLayout;
-        }
-      }
-      next();
-    });
-
-    // add default view collections
-    this.create('files', { viewType: 'renderable'});
-    this.create('includes', { viewType: 'partial' });
-    this.create('layouts', { viewType: 'layout' });
-
-    // verb-specific collections
-    if (this.isVerb) {
-      this.create('badges', { viewType: 'partial' });
-      this.create('docs', { viewType: 'partial' });
-    }
-
-    // "noop" layout
-    this.layout('empty', {content: '{% body %}'});
-
-    // create collections defined on the options
-    if (isObject(this.options.create)) {
-      for (var key in this.options.create) {
-        if (!this[key]) {
-          this.create(key, this.options.create[key]);
-        } else {
-          this[key].option(this.options.create[key]);
-        }
-      }
-    }
-
-    // pass the plugin to sub-generators
+    app.use(require('generate-collections'));
     return plugin;
   };
-};
+}
 
 /**
  * Validate instance
  */
 
 function isValidInstance(app) {
-  if (!app.isApp && !app.isGenerator) {
+  if (!app.isApp && !app.isGenerator && !app.isVerb) {
     return false;
   }
   if (app.isRegistered('verb-collections')) {
