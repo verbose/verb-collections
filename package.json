@@ -1,7 +1,7 @@
 {
   "name": "verb-collections",
-  "description": "Verb plugin that adds includes, layouts, badges and docs template collections. Can be used with verb, assemble or generate, in a `___file.js`, or a globally installed generator.",
-  "version": "0.1.1",
+  "description": "Verb plugin that adds includes, layouts, badges and docs template collections. Can be used with verb, assemble or generate, in a `*file.js`, or a globally installed generator.",
+  "version": "0.1.2",
   "homepage": "https://github.com/verbose/verb-collections",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "verbose/verb-collections",
