@@ -2,11 +2,11 @@
   "name": "verb-collections",
   "description": "Verb plugin that adds includes, layouts, badges and docs template collections. Can be used with verb, assemble or generate, in a `___file.js`, or a globally installed generator.",
   "version": "0.1.1",
-  "homepage": "https://github.com/jonschlinkert/verb-collections",
+  "homepage": "https://github.com/verbose/verb-collections",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
-  "repository": "jonschlinkert/verb-collections",
+  "repository": "verbose/verb-collections",
   "bugs": {
-    "url": "https://github.com/jonschlinkert/verb-collections/issues"
+    "url": "https://github.com/verbose/verb-collections/issues"
   },
   "license": "MIT",
   "files": [
@@ -31,7 +31,7 @@
     "gulp-format-md": "^0.1.7",
     "gulp-istanbul": "^0.10.3",
     "gulp-mocha": "^2.2.0",
-    "mocha": "*",
+    "mocha": "^2.4.5",
     "verb": "github:verbose/verb#dev"
   },
   "verb": {
